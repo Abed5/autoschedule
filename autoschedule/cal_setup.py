@@ -1,3 +1,4 @@
+import config
 import datetime
 import pickle
 import os.path
@@ -8,7 +9,7 @@ from google.auth.transport.requests import Request
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-CREDENTIALS_FILE = 'my.json'
+CREDENTIALS_FILE = 'auth.json'
 
 def get_calendar_service():
    creds = None
