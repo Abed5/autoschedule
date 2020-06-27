@@ -86,6 +86,7 @@ def shuffle_tasks(my_tasks):
     undecided = True
     for i in m:
         print(i)
+    n = group_to_weight4(m)
     while undecided:
         k = input('Would you like to shuffle and group tasks?(y/n)\n')
         if k == 'y':
