@@ -56,9 +56,9 @@ def one_task(event,task, start_time,serv, cal, timezone):
 
     start = (today + timedelta(minutes=2)).isoformat()
     end = (today + timedelta(minutes=47)).isoformat()
-    insert_event(task,start,end, serv, '45', cal, timezone)
-    insert_event('Break', break_start1, break_end1, serv, 'b2', cal, timezone)
-    insert_event('Break', break_start2, break_end2, serv , 'b3', cal, timezone)
+    insert_event(task,start,end, serv, cal, timezone, '45')
+    insert_event('Break', break_start1, break_end1, serv, cal, timezone, 'b2')
+    insert_event('Break', break_start2, break_end2, serv , cal, timezone, 'b3')
 
 
 def two_tasks(event, tasks, start_time, serv, cal, timezone):
@@ -74,11 +74,11 @@ def two_tasks(event, tasks, start_time, serv, cal, timezone):
     end1 = (today + timedelta(minutes=24)).isoformat()
     start2 = (today + timedelta(minutes=26)).isoformat()
     end2 = (today+ timedelta(minutes = 48)).isoformat()
-    insert_event(tasks[0], start1, end1, serv, '22-22', cal, timezone)
-    insert_event(tasks[1], start2, end2, serv, '22-22', cal, timezone)
-    insert_event('Break', end1, start2, serv, 'b2', cal, timezone)
-    insert_event('Break', break_start1, break_end1, serv, 'b2', cal, timezone)
-    insert_event('Break', break_start2, break_end2, serv , 'b2', cal, timezone)
+    insert_event(tasks[0], start1, end1, serv, cal, timezone, '22-22')
+    insert_event(tasks[1], start2, end2, serv, cal, timezone, '22-22')
+    insert_event('Break', end1, start2, serv, cal, timezone, 'b2')
+    insert_event('Break', break_start1, break_end1, serv, cal, timezone, 'b2')
+    insert_event('Break', break_start2, break_end2, serv , cal, timezone, 'b2')
 
 def task_description(weight):
     if weight == 4:
@@ -95,27 +95,27 @@ def three_tasks(event, tasks, start_time, serv, cal, timezone):
 
     break_start1 = today.isoformat()
     break_end1 = time_add(break_start1, 'Break')
-    insert_event('Break', break_start1, break_end1, serv, 'b2', cal, timezone)
+    insert_event('Break', break_start1, break_end1, serv, cal, timezone, 'b2')
 
     start1 = break_end1
     end1 = time_add(start1, tasks[0][0])
-    insert_event(tasks[0][1], start1, end1, serv, task_description(tasks[0][0]), cal, timezone)
+    insert_event(tasks[0][1], start1, end1, serv, cal, timezone, task_description(tasks[0][0]))
 
     break_start2 = end1
     break_end2 = time_add(break_start2, 'Break')
-    insert_event('Break', break_start2, break_end2, serv, 'b2' , cal, timezone)
+    insert_event('Break', break_start2, break_end2, serv , cal, timezone, 'b2')
 
     start2 = break_end2
     end2 = time_add(start2, tasks[1][0])
-    insert_event(tasks[1][1], start2, end2, serv, task_description(tasks[1][0]), cal, timezone)
+    insert_event(tasks[1][1], start2, end2, serv, cal, timezone, task_description(tasks[1][0]))
 
     break_start3 = end2
     break_end3 = time_add(break_start3, 'Break')
-    insert_event('Break', break_start3, break_end3, serv, 'b2' , cal, timezone)
+    insert_event('Break', break_start3, break_end3, serv , cal, timezone, 'b2')
 
     start3 = break_end3
     end3 = time_add(start3, tasks[2][0])
-    insert_event(tasks[2][1], start3, end3, serv, task_description(tasks[2][0]), cal, timezone)
+    insert_event(tasks[2][1], start3, end3, serv, cal, timezone, task_description(tasks[2][0]))
 
 
 def four_tasks(event, tasks, start_time, serv, cal, timezone):
@@ -134,30 +134,30 @@ def four_tasks(event, tasks, start_time, serv, cal, timezone):
 
     start4 = (today + timedelta(minutes=39)).isoformat()
     end4 = (today+ timedelta(minutes = 50)).isoformat()
-    insert_event(tasks[0], start1, end1, serv, '11-11', cal, timezone)
+    insert_event(tasks[0], start1, end1, serv, cal, timezone, '11-11')
 
-    insert_event('Break', end1, start2, serv, 'b2', cal, timezone)
+    insert_event('Break', end1, start2, serv, cal, timezone, 'b2')
 
-    insert_event(tasks[1], start2, end2, serv, '11-11', cal, timezone)
+    insert_event(tasks[1], start2, end2, serv, cal, timezone, '11-11')
 
-    insert_event('Break', end2, start3, serv, 'b2', cal, timezone)
+    insert_event('Break', end2, start3, serv, cal, timezone, 'b2')
 
-    insert_event(tasks[2], start3, end3, serv, '11-11', cal, timezone)
+    insert_event(tasks[2], start3, end3, serv, cal, timezone, '11-11')
 
-    insert_event('Break', end3, start4, serv, 'b2', cal, timezone)
+    insert_event('Break', end3, start4, serv, cal, timezone, 'b2')
 
-    insert_event(tasks[3], start4, end4, serv, '11-11', cal, timezone)
+    insert_event(tasks[3], start4, end4, serv, cal, timezone, '11-11')
 
 def incomplete_tasks(event, tasks, start_time, serv, cal, timezone):
     Today = start_time.isoformat()
     for i in tasks:
         break_start1 = Today
         break_end1 = time_add(break_start1, 'Break')
-        insert_event('Break', break_start1, break_end1, serv, 'b2' , cal, timezone)
+        insert_event('Break', break_start1, break_end1, serv , cal, timezone, 'b2')
 
         start1 = break_end1
         end1 = time_add(start1, i[0])
-        insert_event(i[1], start1, end1, serv, task_description(i[0]), cal, timezone)
+        insert_event(i[1], start1, end1, serv, cal, timezone, task_description(i[0]))
         Today = end1
 
 #DUMMY
