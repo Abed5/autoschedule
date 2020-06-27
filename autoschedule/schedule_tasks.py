@@ -221,7 +221,10 @@ def list_of_time_blocks(cal):
     count = 1
     for event in events:
        start = event['start'].get('dateTime', event['start'].get('date'))
-       print(str(count) + ' ',start, event['summary'])
+       if event['summary']:
+           print('block ' + str(count) + ' ',start, event['summary'])
+       else:
+           print('block ' + str(count) + ' ',start)
        count += 1
     return events
 
@@ -338,10 +341,12 @@ if __name__ == "__main__":
         unscheduled_Tasks = unscheduled_tasks(all_Tasks)
         m = copy.deepcopy(unscheduled_Tasks)
         new_Task_list = new_tasks_list(scheduled_Tasks, m, len(time_blocks))
-        hours_vs_events(time_blocks, unscheduled_Tasks)
         if len(time_blocks) == 0:
-            k = input('You have 0 time blocks. Please select some time blocks and then press 1, or exit by pressing 2.(1/2)')
+            k = input('You have 0 time blocks. Please select some time blocks and then press 1, or exit by pressing 2.(1/2)\n')
+            if k == '2':
+                undecided = False
         else:
+            hours_vs_events(time_blocks, unscheduled_Tasks)
             k = input('Would you like to schedule tasks?(y/n)\n')
             if k == 'y':
                 create_events(time_blocks, unscheduled_Tasks, schedule_calendar, mytimeZone)
