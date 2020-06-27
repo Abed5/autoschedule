@@ -221,10 +221,13 @@ def list_of_time_blocks(cal):
     count = 1
     for event in events:
        start = event['start'].get('dateTime', event['start'].get('date'))
-       if event['summary']:
+       try:
            print('block ' + str(count) + ' ',start, event['summary'])
-       else:
+       except KeyError:
            print('block ' + str(count) + ' ',start)
+       except:
+           print("Unexpected error:", sys.exc_info()[0])
+           raise
        count += 1
     return events
 
