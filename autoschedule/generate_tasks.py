@@ -146,7 +146,7 @@ def write_tasks_to_file(my_tasks, date_today):
                 my_file.writelines(h)
                 k += 1
                 j += 4
-    print('Writing tasks done!\n')
+    print('Writing tasks done! Your tasks are now in tasks_list.txt\n')
 
 
 
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     shuffled_Tasks = shuffle_tasks(unshuffled_Tasks)
     undecided = True
     while undecided:
-        k = input('Nice job creating Tasks :) Would you like to commit Them?(y/n)\n')
+        k = input('Nice job creating Tasks :) Would you like to save them?(y/n)\n')
         if k == 'y':
             write_tasks_to_file(shuffled_Tasks, d_tod)
             undecided = False
