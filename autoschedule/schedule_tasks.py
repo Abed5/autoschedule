@@ -339,16 +339,19 @@ if __name__ == "__main__":
         m = copy.deepcopy(unscheduled_Tasks)
         new_Task_list = new_tasks_list(scheduled_Tasks, m, len(time_blocks))
         hours_vs_events(time_blocks, unscheduled_Tasks)
-        k = input('Would you like to schedule tasks?(y/n)\n')
-        if k == 'y':
-            create_events(time_blocks, unscheduled_Tasks, schedule_calendar, mytimeZone)
-            write_tasks_to_file(new_Task_list)
-            undecided = False
-        elif k == 'n':
-            k = input('Would you like to exit?(y/n)\n')
-            if k == 'y':
-                undecided = False
-            if k == 'n':
-                pass
+        if len(time_blocks) == 0:
+            k = input('You have 0 time blocks. Please select some time blocks and then press 1, or exit by pressing 2.(1/2)')
         else:
-            print('Invalid input. Try again\n')
+            k = input('Would you like to schedule tasks?(y/n)\n')
+            if k == 'y':
+                create_events(time_blocks, unscheduled_Tasks, schedule_calendar, mytimeZone)
+                write_tasks_to_file(new_Task_list)
+                undecided = False
+            elif k == 'n':
+                k = input('Would you like to exit?(y/n)\n')
+                if k == 'y':
+                    undecided = False
+                if k == 'n':
+                    pass
+            else:
+                print('Invalid input. Try again\n')
