@@ -45,7 +45,7 @@ def time_add(start_time, weight):
     else:
         print('Unknow time add')
 
-def one_task(event,task, start_time,serv):
+def one_task(event,task, start_time,serv, cal, timezone):
     task = task[0][1]
     today = start_time
     break_start1 = today.isoformat()
@@ -56,12 +56,12 @@ def one_task(event,task, start_time,serv):
 
     start = (today + timedelta(minutes=2)).isoformat()
     end = (today + timedelta(minutes=47)).isoformat()
-    insert_event(task,start,end, serv, '45')
-    insert_event('Break', break_start1, break_end1, serv, 'b2')
-    insert_event('Break', break_start2, break_end2, serv , 'b3')
+    insert_event(task,start,end, serv, '45', cal, timezone)
+    insert_event('Break', break_start1, break_end1, serv, 'b2', cal, timezone)
+    insert_event('Break', break_start2, break_end2, serv , 'b3', cal, timezone)
 
 
-def two_tasks(event, tasks, start_time, serv):
+def two_tasks(event, tasks, start_time, serv, cal, timezone):
     tasks = [i[1] for i in tasks]
     today = start_time
     #Breaks(2)
@@ -74,11 +74,11 @@ def two_tasks(event, tasks, start_time, serv):
     end1 = (today + timedelta(minutes=24)).isoformat()
     start2 = (today + timedelta(minutes=26)).isoformat()
     end2 = (today+ timedelta(minutes = 48)).isoformat()
-    insert_event(tasks[0], start1, end1, serv, '22-22')
-    insert_event(tasks[1], start2, end2, serv, '22-22')
-    insert_event('Break', end1, start2, serv, 'b2')
-    insert_event('Break', break_start1, break_end1, serv, 'b2')
-    insert_event('Break', break_start2, break_end2, serv , 'b2')
+    insert_event(tasks[0], start1, end1, serv, '22-22', cal, timezone)
+    insert_event(tasks[1], start2, end2, serv, '22-22', cal, timezone)
+    insert_event('Break', end1, start2, serv, 'b2', cal, timezone)
+    insert_event('Break', break_start1, break_end1, serv, 'b2', cal, timezone)
+    insert_event('Break', break_start2, break_end2, serv , 'b2', cal, timezone)
 
 def task_description(weight):
     if weight == 4:
@@ -90,35 +90,35 @@ def task_description(weight):
     else:
         return ':)'
 
-def three_tasks(event, tasks, start_time, serv):
+def three_tasks(event, tasks, start_time, serv, cal, timezone):
     today = start_time
 
     break_start1 = today.isoformat()
     break_end1 = time_add(break_start1, 'Break')
-    insert_event('Break', break_start1, break_end1, serv, 'b2' )
+    insert_event('Break', break_start1, break_end1, serv, 'b2', cal, timezone)
 
     start1 = break_end1
     end1 = time_add(start1, tasks[0][0])
-    insert_event(tasks[0][1], start1, end1, serv, task_description(tasks[0][0]))
+    insert_event(tasks[0][1], start1, end1, serv, task_description(tasks[0][0]), cal, timezone)
 
     break_start2 = end1
     break_end2 = time_add(break_start2, 'Break')
-    insert_event('Break', break_start2, break_end2, serv, 'b2' )
+    insert_event('Break', break_start2, break_end2, serv, 'b2' , cal, timezone)
 
     start2 = break_end2
     end2 = time_add(start2, tasks[1][0])
-    insert_event(tasks[1][1], start2, end2, serv, task_description(tasks[1][0]))
+    insert_event(tasks[1][1], start2, end2, serv, task_description(tasks[1][0]), cal, timezone)
 
     break_start3 = end2
     break_end3 = time_add(break_start3, 'Break')
-    insert_event('Break', break_start3, break_end3, serv, 'b2' )
+    insert_event('Break', break_start3, break_end3, serv, 'b2' , cal, timezone)
 
     start3 = break_end3
     end3 = time_add(start3, tasks[2][0])
-    insert_event(tasks[2][1], start3, end3, serv, task_description(tasks[2][0]))
+    insert_event(tasks[2][1], start3, end3, serv, task_description(tasks[2][0]), cal, timezone)
 
 
-def four_tasks(event, tasks, start_time, serv):
+def four_tasks(event, tasks, start_time, serv, cal, timezone):
     tasks = [i[1] for i in tasks]
     today = start_time
     start1 = today.isoformat()
@@ -134,30 +134,30 @@ def four_tasks(event, tasks, start_time, serv):
 
     start4 = (today + timedelta(minutes=39)).isoformat()
     end4 = (today+ timedelta(minutes = 50)).isoformat()
-    insert_event(tasks[0], start1, end1, serv, '11-11')
+    insert_event(tasks[0], start1, end1, serv, '11-11', cal, timezone)
 
-    insert_event('Break', end1, start2, serv, 'b2')
+    insert_event('Break', end1, start2, serv, 'b2', cal, timezone)
 
-    insert_event(tasks[1], start2, end2, serv, '11-11')
+    insert_event(tasks[1], start2, end2, serv, '11-11', cal, timezone)
 
-    insert_event('Break', end2, start3, serv, 'b2')
+    insert_event('Break', end2, start3, serv, 'b2', cal, timezone)
 
-    insert_event(tasks[2], start3, end3, serv, '11-11')
+    insert_event(tasks[2], start3, end3, serv, '11-11', cal, timezone)
 
-    insert_event('Break', end3, start4, serv, 'b2')
+    insert_event('Break', end3, start4, serv, 'b2', cal, timezone)
 
-    insert_event(tasks[3], start4, end4, serv, '11-11')
+    insert_event(tasks[3], start4, end4, serv, '11-11', cal, timezone)
 
-def incomplete_tasks(event, tasks, start_time, serv):
+def incomplete_tasks(event, tasks, start_time, serv, cal, timezone):
     Today = start_time.isoformat()
     for i in tasks:
         break_start1 = Today
         break_end1 = time_add(break_start1, 'Break')
-        insert_event('Break', break_start1, break_end1, serv, 'b2' )
+        insert_event('Break', break_start1, break_end1, serv, 'b2' , cal, timezone)
 
         start1 = break_end1
         end1 = time_add(start1, i[0])
-        insert_event(i[1], start1, end1, serv, task_description(i[0]))
+        insert_event(i[1], start1, end1, serv, task_description(i[0]), cal, timezone)
         Today = end1
 
 #DUMMY
@@ -228,11 +228,11 @@ def list_of_time_blocks(cal):
 def full_weight(Tasks):
     return 4 == sum([i[0] for i in Tasks])
 
-def create_events(eventsList,tasksList):
+def create_events(timeBlocks, tasksList, calendar, time_zone):
     service = get_calendar_service()
     count = 0
     notcounted = True
-    for i in eventsList:
+    for i in timeBlocks:
         if count < len(tasksList):
             print('#############')
             tasks = tasksList[count]
@@ -241,17 +241,17 @@ def create_events(eventsList,tasksList):
             today = datetime(d.year, d.month, d.day, int(i['start']['dateTime'][11:][:2]), int(i['start']['dateTime'][14:][:2]))
             if full_weight(tasks):
                 if len(tasks) == 1:
-                    one_task(i,tasks,today,service)
+                    one_task(i, tasks, today, service, calendar,time_zone)
                 elif len(tasks) == 2:
-                    two_tasks(i, tasks,today,service)
+                    two_tasks(i, tasks, today, service, calendar, time_zone)
                 elif len(tasks) == 3:
-                    three_tasks(i, tasks, today, service)
+                    three_tasks(i, tasks, today, service, calendar, time_zone)
                 elif len(tasks) == 4:
-                    four_tasks(i, tasks,today,service)
+                    four_tasks(i, tasks, today, service, calendar, time_zone)
                 else:
                     pass
             else:
-                incomplete_tasks(i, tasks, today, service)
+                incomplete_tasks(i, tasks, today, service, calendar, time_zone)
 
             if notcounted:
                 count += 1
@@ -333,7 +333,7 @@ if __name__ == "__main__":
     mytimeZone = config.time_Zone
     undecided = True
     while undecided:
-        blocks = list_of_time_blocks(stubs_calendar)
+        time_blocks = list_of_time_blocks(stubs_calendar)
         all_Tasks = list_of_grouped_tasks()
         scheduled_Tasks = scheduled_tasks(all_Tasks)
         unscheduled_Tasks = unscheduled_tasks(all_Tasks)
@@ -342,7 +342,7 @@ if __name__ == "__main__":
         hours_vs_events(events, unscheduled_Tasks)
         k = input('Would you like to schedule tasks?(y/n)\n')
         if k == 'y':
-            create_events(events, unscheduled_Tasks, schedule_calendar, mytimeZone)
+            create_events(time_blocks, unscheduled_Tasks, schedule_calendar, mytimeZone)
             write_tasks_to_file(new_Task_list)
             undecided = False
         elif k == 'n':
