@@ -1,0 +1,16 @@
+#Format: category - name - number of tasks
+#Category: 1 - 1hr, 2 - 30mins, 4 - 15mins
+#exclude a line with # at the end
+2 Astronomy_Discussion 1#
+2 Religion_Homework 2#
+4 Astronomy_Updates 1
+4 Religion_Updates 1
+4 Anthropology_Updates 1
+4 Social_media 1#
+4 Emails 1#
+4 Todo_list 1
+4 Journal 1
+4 Check_bank_accounts 1
+2 Laundry 2#
+2 Kitchen_Cleanup 2#
+2 Shopping 2#
