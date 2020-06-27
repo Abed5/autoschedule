@@ -166,7 +166,7 @@ def insert_eventD(task, startTime, endTime,serv, description = ''):
 
 
 #input your email here
-def insert_event(task, startTime, endTime,serv, description = '', cal_ID, timeZone):
+def insert_event(task, startTime, endTime,serv, cal_ID, timeZone, description = ''):
     event_result = serv.events().insert(calendarId=cal_ID,
            body={
                "summary": task,
@@ -327,7 +327,6 @@ if __name__ == "__main__":
     import time
     import copy
     import config
-    sys.path.append(os.path.abspath(my_directory))
     stubs_calendar = config.calendar_IDs['stubs']
     schedule_calendar = config.calendar_IDs['schedule']
     mytimeZone = config.time_Zone
@@ -338,8 +337,8 @@ if __name__ == "__main__":
         scheduled_Tasks = scheduled_tasks(all_Tasks)
         unscheduled_Tasks = unscheduled_tasks(all_Tasks)
         m = copy.deepcopy(unscheduled_Tasks)
-        new_Task_list = new_tasks_list(scheduled_Tasks, m, len(events))
-        hours_vs_events(events, unscheduled_Tasks)
+        new_Task_list = new_tasks_list(scheduled_Tasks, m, len(time_blocks))
+        hours_vs_events(time_blocks, unscheduled_Tasks)
         k = input('Would you like to schedule tasks?(y/n)\n')
         if k == 'y':
             create_events(time_blocks, unscheduled_Tasks, schedule_calendar, mytimeZone)
