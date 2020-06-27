@@ -107,7 +107,7 @@ def shuffle_tasks(my_tasks):
 
 def write_tasks_to_file(my_tasks, date_today):
     with open("tasks_list.txt", "w") as my_file:
-        my_file.writelines('#Each task > 2 letters\n' + date_today.strftime("%y") + ', '+ date_today.strftime("%m") + ' , ' + date_today.strftime("%d") + '\n')
+        my_file.writelines('#Each task > 2 letters\n' + '20' + date_today.strftime("%y") + ', '+ date_today.strftime("%m") + ' , ' + date_today.strftime("%d") + '\n')
         k = 1
         j = 1
         space = ''
