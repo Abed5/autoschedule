@@ -1,10 +1,10 @@
 #Each task > 2 letters
 2020, 06 , 27
-1---->1<----->1. Astronomy_Updates
+1---->1<----->1. Astronomy_Updates*
  ---->1<----->2. Religion_Updates
  ---->1<----->3. Anthropology_Updates
  ---->1<----->4. Todo_list
 
-2---->1<----->5. Journal
+2---->1<----->5. Journal*
  ---->1<----->6. Check_bank_accounts
 
