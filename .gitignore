@@ -129,6 +129,10 @@ dmypy.json
 .pyre/
 
 #Credentials
-
+config.py
 auth.json
 token.pickle
+
+#Text files
+tasks_layout.txt
+tasks_list.txt
