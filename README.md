@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # autoschedule
 
 **Automate Scheduling on Google Calendar with Python**
