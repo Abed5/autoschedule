@@ -1,4 +1,4 @@
-pip==21.1
+pip==23.3
 IPython==8.10.0
 google-api-python-client==1.9.3
 google-auth-oauthlib==0.4.1
